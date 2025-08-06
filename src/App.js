@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./header/header";
+import MainBlock from "./main-block/main-block";
+import About from "./about/about";
+import InfoBlock from "./info-block/info-block";
+import PriceBlock from "./price-block/price-block";
+import TableBlock from "./table-block/table-block";
+import InfoBlock2 from "./info-block-2/info-block-2";
+import ContactBlock from "./contact-block/contact-block";
+import Footer from "./Footer";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <Header/>
+            <MainBlock />
+            <About />
+            <InfoBlock />
+            <PriceBlock />
+            <TableBlock />
+            <InfoBlock2 />
+            <ContactBlock />
+            <Footer />
+        </>
+    );
 }
 
 export default App;

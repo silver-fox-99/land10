@@ -40,7 +40,7 @@ export default function Footer() {
                 <div className="footer__contact-title">Our contact:</div>
 
                 <div className="footer__contact-item">
-                    <img src={phone} alt=""/> +380 444 444 44
+                    <img src={phone} alt=""/> +44(0)5847 462346
                 </div>
                 <div className="footer__contact-item">
                     <img src={mail} alt=""/> support@freedom.invest

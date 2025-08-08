@@ -32,7 +32,7 @@ export default function MainBlock() {
                     Long-term strategy, real assets, and transparent management for those who build, not guess
                 </motion.span>
                 <motion.a
-                    href="#"
+                    href={process.env.REACT_APP_LINK}
                     className="main-block__button button"
                     variants={itemVariants}
                     whileHover={{ scale: 1.06 }}

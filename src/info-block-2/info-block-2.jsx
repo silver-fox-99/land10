@@ -36,7 +36,7 @@ export default function InfoBlock2() {
                     and <span>secure</span> your first assets <span>today</span>
                 </h2>
                 <motion.a
-                    href="#"
+                    href={process.env.REACT_APP_LINK}
                     className="info-block-2__button button"
                     variants={fadeUp}
                     whileHover={{

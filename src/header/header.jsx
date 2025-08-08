@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import './header.scss';
+import logo from '../Footer/logo.png'
 
 export default function Header() {
     const [open, setOpen] = useState(false);
 
     return (
         <header className="header container">
-            <div className="header__column">LOGO</div>
+            <div className="header__column">
+                <img className="logo" src={logo} alt=""/>
+            </div>
 
             <nav className="header__nav">
                 <a href="#about" className="header__link">About</a>

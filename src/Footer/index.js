@@ -1,12 +1,13 @@
 import phone from './phone.svg';
 import mail from './mail.svg';
 import './footer.scss'
+import logo from './logo.png'
 
 export default function Footer() {
     return <footer className="footer container">
         <div className="footer__column" data-aos="fade-up">
             <div className="footer__logo">
-               Logo
+                <img className={'logo'} src={logo} alt=""/>
             </div>
 
             <div className="footer__contact-mobile">
@@ -39,17 +40,17 @@ export default function Footer() {
                 <div className="footer__contact-title">Our contact:</div>
 
                 <div className="footer__contact-item">
-                    <img src={phone} alt=""/> aaa@gmail.com
+                    <img src={phone} alt=""/> +380 444 444 44
                 </div>
                 <div className="footer__contact-item">
-                    <img src={mail} alt=""/> +380 444 444 44
+                    <img src={mail} alt=""/> support@freedom.invest
                 </div>
 
             </div>
         </div>
 
         <div className="footer__column">
-            © 2023-2024. All rights reserved.
+            © 2023-2025. All rights reserved.
         </div>
     </footer>
 }

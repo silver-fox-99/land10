@@ -1,26 +1,29 @@
 import React, { useState } from 'react';
 import './header.scss';
-import logo from '../Footer/logo.png'
+import logo from '../Footer/logo.png';
+import { useTranslation } from 'react-i18next';
+import {LanguageSwitcher} from "./language-switcher";
 
 export default function Header() {
     const [open, setOpen] = useState(false);
+    const { t } = useTranslation();
 
     return (
         <header className="header container">
             <div className="header__column">
-                <img className="logo" src={logo} alt=""/>
+                <img className="logo" src={logo} alt="Logo"/>
             </div>
 
             <nav className="header__nav">
-                <a href="#about" className="header__link">About</a>
-                <a href="#features" className="header__link">Features</a>
-                <a href="#price" className="header__link">Tariffs</a>
-                <a href="#table" className="header__link">Trade view</a>
-                <a href="#contact" className="header__link">Contacts</a>
+                <a href="#about" className="header__link">{t('header.about')}</a>
+                <a href="#features" className="header__link">{t('header.features')}</a>
+                <a href="#table" className="header__link">{t('header.tradeView')}</a>
+                <a href="#contact" className="header__link">{t('header.contacts')}</a>
             </nav>
 
-            <div className="header__column header__account">
-                <a href="#" className="header__button button">Open trading account</a>
+            <div className="header__column header__column--last header__account">
+                <a href="#" className="header__button button">{t('header.openAccount')}</a>
+                <LanguageSwitcher />
             </div>
 
             <button
@@ -33,15 +36,15 @@ export default function Header() {
                 <span/>
             </button>
 
-            {/* Мобильное меню */}
             <div className={`header__mobile${open ? ' header__mobile--open' : ''}`}>
-                {/*<button className="header__mobile-close" onClick={() => setOpen(false)} aria-label="Close">×</button>*/}
-                <a href="#about" className="header__link" onClick={() => setOpen(false)}>About</a>
-                <a href="#features" className="header__link" onClick={() => setOpen(false)}>Features</a>
-                <a href="#price" className="header__link" onClick={() => setOpen(false)}>Tariffs</a>
-                <a href="#table" className="header__link" onClick={() => setOpen(false)}>Trade view</a>
-                <a href="#contact" className="header__link" onClick={() => setOpen(false)}>Contacts</a>
-                <a href="#" className="header__button button" onClick={() => setOpen(false)}>Open trading account</a>
+                <a href="#about" className="header__link" onClick={() => setOpen(false)}>{t('header.about')}</a>
+                <a href="#features" className="header__link" onClick={() => setOpen(false)}>{t('header.features')}</a>
+                <a href="#table" className="header__link" onClick={() => setOpen(false)}>{t('header.tradeView')}</a>
+                <a href="#contact" className="header__link" onClick={() => setOpen(false)}>{t('header.contacts')}</a>
+                <a href="#" className="header__button button" onClick={() => setOpen(false)}>{t('header.openAccount')}</a>
+                <div style={{ marginTop: 12 }}>
+                    <LanguageSwitcher />
+                </div>
             </div>
         </header>
     );

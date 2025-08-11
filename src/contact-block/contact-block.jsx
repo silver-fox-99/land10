@@ -1,98 +1,102 @@
 import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import TextField from "@mui/material/TextField";
+import { TextField } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
-import './contact-block.scss'
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import "./contact-block.scss";
 
 export default function ContactBlock() {
+    const { t } = useTranslation();
+
     const [countries, setCountries] = useState([]);
     const [loading, setLoading] = useState(true);
     const [fetchError, setFetchError] = useState(null);
 
-    const { control, handleSubmit, reset, formState: { errors, isSubmitSuccessful } } = useForm();
+    const {
+        control,
+        handleSubmit,
+        reset,
+        formState: { errors, isSubmitSuccessful }
+    } = useForm();
 
-    // Получаем страны из API
     useEffect(() => {
         setLoading(true);
-        fetch('https://restcountries.com/v3.1/all?fields=cca2,name,flags')
-            .then(res => res.json())
-            .then(data => {
-                // Берём только нужные поля
+        fetch("https://restcountries.com/v3.1/all?fields=cca2,name,flags")
+            .then((res) => res.json())
+            .then((data) => {
                 const result = data
                     .map((c) => ({
                         code: c.cca2,
                         name: c.name.common,
-                        flag: c.flags?.svg || c.flags?.png || "",
+                        flag: c.flags?.svg || c.flags?.png || ""
                     }))
                     .sort((a, b) => a.name.localeCompare(b.name));
                 setCountries(result);
                 setLoading(false);
             })
-            .catch((e) => {
-                setFetchError("Failed to load country list");
+            .catch(() => {
+                setFetchError(t("contact.fetchError"));
                 setLoading(false);
             });
-    }, []);
+    }, [t]);
 
     const onSubmit = async (data) => {
         try {
             const formatedData = {
-                name: data.name + ' ' + data.surname,
+                name: data.name + " " + data.surname,
                 phone: data.phone,
                 email: data.email,
-                amount: 'more 5000',
-                issue_category: 'socarinvest',
-                message: '0.0.0.0scscscs',
+                amount: "more 5000",
+                issue_category: "socarinvest",
+                message: "0.0.0.0scscscs",
                 country: data.country
-            }
+            };
 
-            await fetch(`${process.env.REACT_APP_PROXY_URL}/lead/register-lead-from-brand`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formatedData)
-            })
-
+            await fetch(
+                `${process.env.REACT_APP_PROXY_URL}/lead/register-lead-from-brand`,
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(formatedData)
+                }
+            );
 
             reset();
         } catch (e) {
             alert(e);
         }
-        // Здесь твой submit (API или почта)
-
     };
 
     return (
-
-
         <motion.div
             className="contact-block"
             id="contact"
-            initial={{opacity: 0, y: 40}}
-            whileInView={{opacity: 1, y: 0}}
-            transition={{duration: 0.7, ease: "easeOut"}}
-            viewport={{once: true, amount: 0.35}}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.35 }}
         >
+            <h3 className="contact-block__title">{t("contact.title")}</h3>
 
-            <h3 className="contact-block__title">Ready to start investing consciously?</h3>
-
-            <form className="contact-block__form" onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-
-                <h3 className="contact-block__subtitle">Contact us</h3>
-                <span className="contact-block__text">Leave your details and receive a personalized investment plan</span>
+            <form
+                className="contact-block__form"
+                onSubmit={handleSubmit(onSubmit)}
+                autoComplete="off"
+            >
+                <h3 className="contact-block__subtitle">{t("contact.subtitle")}</h3>
+                <span className="contact-block__text">{t("contact.text")}</span>
 
                 <Controller
                     name="name"
                     control={control}
-                    rules={{required: "Enter your name"}}
-                    render={({field}) => (
+                    rules={{ required: t("contact.errors.name") }}
+                    render={({ field }) => (
                         <TextField
                             {...field}
-                            label="Name"
+                            label={t("contact.fields.name")}
                             variant="outlined"
                             error={!!errors.name}
                             helperText={errors.name?.message}
@@ -101,14 +105,15 @@ export default function ContactBlock() {
                         />
                     )}
                 />
+
                 <Controller
                     name="surname"
                     control={control}
-                    rules={{required: "Enter your surname"}}
-                    render={({field}) => (
+                    rules={{ required: t("contact.errors.surname") }}
+                    render={({ field }) => (
                         <TextField
                             {...field}
-                            label="Surname"
+                            label={t("contact.fields.surname")}
                             variant="outlined"
                             error={!!errors.surname}
                             helperText={errors.surname?.message}
@@ -117,20 +122,18 @@ export default function ContactBlock() {
                         />
                     )}
                 />
+
                 <Controller
                     name="email"
                     control={control}
                     rules={{
-                        required: "Enter your email",
-                        pattern: {
-                            value: /\S+@\S+\.\S+/,
-                            message: "Invalid email",
-                        },
+                        required: t("contact.errors.emailRequired"),
+                        pattern: { value: /\S+@\S+\.\S+/, message: t("contact.errors.emailInvalid") }
                     }}
-                    render={({field}) => (
+                    render={({ field }) => (
                         <TextField
                             {...field}
-                            label="Email"
+                            label={t("contact.fields.email")}
                             variant="outlined"
                             error={!!errors.email}
                             helperText={errors.email?.message}
@@ -139,11 +142,12 @@ export default function ContactBlock() {
                         />
                     )}
                 />
+
                 <Controller
                     name="country"
                     control={control}
-                    rules={{required: "Choose your country"}}
-                    render={({field}) => (
+                    rules={{ required: t("contact.errors.country") }}
+                    render={({ field }) => (
                         <Autocomplete
                             {...field}
                             options={countries}
@@ -154,12 +158,16 @@ export default function ContactBlock() {
                             renderOption={(props, option) => (
                                 <li {...props} key={option.code}>
                                     {option.flag && (
-                                        <img src={option.flag} alt={option.code} style={{
-                                            width: 18,
-                                            marginRight: 7,
-                                            borderRadius: 2,
-                                            verticalAlign: "middle"
-                                        }}/>
+                                        <img
+                                            src={option.flag}
+                                            alt={option.code}
+                                            style={{
+                                                width: 18,
+                                                marginRight: 7,
+                                                borderRadius: 2,
+                                                verticalAlign: "middle"
+                                            }}
+                                        />
                                     )}
                                     {option.name}
                                 </li>
@@ -167,7 +175,7 @@ export default function ContactBlock() {
                             renderInput={(params) => (
                                 <TextField
                                     {...params}
-                                    label="Country"
+                                    label={t("contact.fields.country")}
                                     variant="outlined"
                                     error={!!errors.country}
                                     helperText={errors.country?.message}
@@ -176,10 +184,10 @@ export default function ContactBlock() {
                                         ...params.InputProps,
                                         endAdornment: (
                                             <>
-                                                {loading ? <CircularProgress color="inherit" size={18}/> : null}
+                                                {loading ? <CircularProgress color="inherit" size={18} /> : null}
                                                 {params.InputProps.endAdornment}
                                             </>
-                                        ),
+                                        )
                                     }}
                                 />
                             )}
@@ -189,18 +197,19 @@ export default function ContactBlock() {
                     )}
                 />
                 {fetchError && (
-                    <div style={{color: "#ff4c4c", marginBottom: 10, marginTop: -8}}>
+                    <div style={{ color: "#ff4c4c", marginBottom: 10, marginTop: -8 }}>
                         {fetchError}
                     </div>
                 )}
+
                 <Controller
                     name="phone"
                     control={control}
-                    rules={{required: "Enter your phone number"}}
-                    render={({field}) => (
+                    rules={{ required: t("contact.errors.phone") }}
+                    render={({ field }) => (
                         <TextField
                             {...field}
-                            label="Phone number"
+                            label={t("contact.fields.phone")}
                             variant="outlined"
                             error={!!errors.phone}
                             helperText={errors.phone?.message}
@@ -209,6 +218,7 @@ export default function ContactBlock() {
                         />
                     )}
                 />
+
                 <Button
                     type="submit"
                     className="contact-block__submit button"
@@ -219,45 +229,43 @@ export default function ContactBlock() {
                         fontSize: 16,
                         background: "#1E59EB",
                         borderRadius: "20px",
-                        border: "1px solid #FF71D1",
+                        border: "1px solid #FF71D1"
                     }}
                     disabled={loading || !!fetchError}
                 >
-                    Submit
+                    {t("contact.submit")}
                 </Button>
+
                 {isSubmitSuccessful && (
-                    <div className="contact-block__success">
-                        Thank you! We’ll contact you soon.
-                    </div>
+                    <div className="contact-block__success">{t("contact.success")}</div>
                 )}
             </form>
         </motion.div>
     );
 }
 
-// Стили для полей, чтобы они были в твоем стиле (тёмный фон, оранжевая рамка)
 const muiInputStyle = {
     input: {
         color: "#000",
         background: "#FFFFFF33",
-        borderRadius: "20px",
+        borderRadius: "20px"
     },
     label: { color: "#000" },
     "& .MuiOutlinedInput-root": {
         borderRadius: "20px",
         "& fieldset": {
-            borderColor: "#D6D6D6", // твой розовый/фиолетовый
-            borderWidth: "1.5px",
+            borderColor: "#D6D6D6",
+            borderWidth: "1.5px"
         },
         "&:hover fieldset": {
-            borderColor: "#D6D6D6", // чуть ярче/другой цвет при hover
+            borderColor: "#D6D6D6"
         },
         "&.Mui-focused fieldset": {
-            borderColor: "#D6D6D6",
-        },
+            borderColor: "#D6D6D6"
+        }
     },
     "& .MuiInputLabel-root": { color: "#000" },
     "& .MuiFormHelperText-root": { color: "#fd532f" },
     borderRadius: "20px",
-    mb: 1.2,
+    mb: 1.2
 };

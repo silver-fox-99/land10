@@ -1,0 +1,104 @@
+{
+  "header": {
+    "about": "About",
+    "features": "Features",
+    "tradeView": "Trade view",
+    "contacts": "Contacts",
+    "openAccount": "Open trading account"
+  },
+  "main": {
+    "title": "Investments focused on <0>stability</0> and <1>growth</1>",
+    "subtitle": "Long-term strategy, real assets, and transparent management for those who build, not guess",
+    "cta": "Start investing"
+  },
+  "about": {
+    "title": "About platform",
+    "subtitle": "Long-term strategy, real assets,<0/>transparent management for those<1/>who build, not guess",
+    "columnTitle": "Everything you need to manage your capital is already here:",
+    "features": [
+      "Access to global instruments",
+      "Protection of funds",
+      "Flexible investment solutions",
+      "Full transparency and reporting"
+    ],
+    "bottom": "You choose: hold ETF positions, work with stocks and indices, enter the crypto market, or combine your portfolio. And we will help you build your route"
+  },
+  "info": {
+    "title": "What you get:",
+    "items": [
+      {
+        "title": "Access to global markets: US, Europe, Asia",
+        "text": "Invest in the world's largest economies without unnecessary restrictions and barriers"
+      },
+      {
+        "title": "Personal account with checkpoints and timeline",
+        "text": "Track your progress, see how your capital is performing, and make decisions on an easy-to-understand dashboard"
+      },
+      {
+        "title": "Investment plan considering horizon and risks",
+        "text": "We don't guess, we plan. Get a strategy tailored to your goals and risk level"
+      },
+      {
+        "title": "Portfolio customization for your goals",
+        "text": "Whether it's retirement, a home, or passive income, we’ll help you allocate your capital"
+      },
+      {
+        "title": "Notifications, forecasts, and analytics",
+        "text": "Stay up to date: market analytics, entry points, and news so you won't miss a thing"
+      },
+      {
+        "title": "Stocks, bonds, ETFs, cryptocurrencies",
+        "text": "Build a balanced portfolio of traditional and digital assets under a single strategy"
+      }
+    ]
+  },
+  "table": {
+    "title": "Trade view",
+    "columns": {
+      "market": "Markets",
+      "price": "Price",
+      "change": "Change%",
+      "marketCap": "Market cap",
+      "volume24h": "Volume 24h"
+    }
+  },
+  "info2": {
+    "title": "Choose <0>a plan</0>, <1>top up </1>your balance, and <2>secure</2> your first assets <3>today</3>",
+    "cta": "Start investing"
+  },
+  "contact": {
+    "title": "Ready to start investing consciously?",
+    "subtitle": "Contact us",
+    "text": "Leave your details and receive a personalized investment plan",
+    "fields": {
+      "name": "Name",
+      "surname": "Surname",
+      "email": "Email",
+      "country": "Country",
+      "phone": "Phone number"
+    },
+    "errors": {
+      "name": "Enter your name",
+      "surname": "Enter your surname",
+      "emailRequired": "Enter your email",
+      "emailInvalid": "Invalid email",
+      "country": "Choose your country",
+      "phone": "Enter your phone number"
+    },
+    "submit": "Submit",
+    "success": "Thank you! We’ll contact you soon.",
+    "fetchError": "Failed to load country list"
+  },
+  "footer": {
+    "contactTitle": "Our contact:",
+    "nav": {
+      "about": "About Us",
+      "price": "Price",
+      "info": "Information",
+      "support": "Support",
+      "contact": "Contact Us"
+    },
+    "disclaimer": "Trade Responsibly: Trading financial instruments carry a high level of risk and may not be suitable for all investors. Please ensure that you understand the risks involved as you may lose all your invested capital. Past performance of trading instruments is not a reliable indicator of future performance. Please read our ‘Risk Disclosure Notice’.\n\nCompany number 12780933\n\nRegistered office address: Devonshire House Off Ax, 582 Honeypot Lane, Stanmore, United Kingdom, England, HA7 1JS",
+    "rights": "All rights reserved."
+  }
+}

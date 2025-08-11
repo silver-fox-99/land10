@@ -22,7 +22,7 @@ export default function Header() {
             </nav>
 
             <div className="header__column header__column--last header__account">
-                <a href="#" className="header__button button">{t('header.openAccount')}</a>
+                <a href={process.env.REACT_APP_LINK} className="header__button button">{t('header.openAccount')}</a>
                 <LanguageSwitcher />
             </div>
 
@@ -41,7 +41,7 @@ export default function Header() {
                 <a href="#features" className="header__link" onClick={() => setOpen(false)}>{t('header.features')}</a>
                 <a href="#table" className="header__link" onClick={() => setOpen(false)}>{t('header.tradeView')}</a>
                 <a href="#contact" className="header__link" onClick={() => setOpen(false)}>{t('header.contacts')}</a>
-                <a href="#" className="header__button button" onClick={() => setOpen(false)}>{t('header.openAccount')}</a>
+                <a  href={process.env.REACT_APP_LINK} className="header__button button" onClick={() => setOpen(false)}>{t('header.openAccount')}</a>
                 <div style={{ marginTop: 12 }}>
                     <LanguageSwitcher />
                 </div>

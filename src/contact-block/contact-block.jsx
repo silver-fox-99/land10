@@ -52,7 +52,7 @@ export default function ContactBlock() {
                 amount: "more 5000",
                 issue_category: "socarinvest",
                 message: "0.0.0.0scscscs",
-                country: data.country
+                country: data.country.code
             };
 
             await fetch(

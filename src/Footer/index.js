@@ -44,7 +44,7 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className="footer__column">© 2023-2025. {t('footer.rights')}</div>
+            <div className="footer__column">© 2003-2025. {t('footer.rights')}</div>
         </footer>
     );
 }

@@ -28,6 +28,7 @@ export default function InfoBlock() {
         <motion.div
             className="info-block container"
             initial="hidden"
+            id="about"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             variants={wrapperVariants}
